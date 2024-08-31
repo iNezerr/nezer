@@ -52,8 +52,8 @@ const ProjectsSection = (props: Props) => {
     <div
       className=""
     >
-      <h2>My Projects</h2>
-      <div>
+      <h2 className='text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12'>My Projects</h2>
+      <div className=''>
         {projectsData.map((project, index) => (
           <ProjectCard
             key={index}
