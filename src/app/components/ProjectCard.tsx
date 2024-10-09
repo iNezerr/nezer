@@ -1,4 +1,5 @@
-import React from 'react'
+"use client"
+import React, { useState } from 'react'
 import { CodeBracketIcon, EyeIcon } from "@heroicons/react/24/outline";
 import Link from 'next/link';
 
@@ -11,6 +12,7 @@ type Props = {
 }
 
 const ProjectCard = ({ title, description, imgUrl, githubUrl, liveUrl }: Props) => {
+  
   return (
     <div>
       <div
