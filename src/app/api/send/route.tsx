@@ -1,40 +1,41 @@
-import { Resend } from 'resend';
-import { render } from '@react-email/render';
+import { NextResponse } from "next/server";
+import { Resend } from "resend";
 
-// Initialize Resend with your API key
+// Initialize Resend with the API key from environment variables
 const resend = new Resend(process.env.RESEND_API_KEY);
+const fromEmail = process.env.FROM_EMAIL || '';
 
-// Define the React component for the email body
-const EmailBody = () => {
-  return (
-  <>
-  <p>Email Body</p>
-    </>
-)}
+// Define the request body type
+interface EmailRequest {
+  email: string;
+  subject: string;
+  message: string;
+}
 
-// Function to handle the POST request
-export async function POST() {
+export async function POST(req: Request) {
+  // Parse the incoming request body
+  const { email, subject, message }: EmailRequest = await req.json();
+  console.log(email, subject, message);
+
   try {
-    // Render the React component to HTML
-    const htmlContent = render(<EmailBody />);
-
-    // Send the email using Resend API
-    const { data, error } = await resend.emails.send({
-      from: 'Ebenezer <bonuzx1@gmail.com>',
-      to: ['bonuzx1@gmail.com'],
-      subject: 'Hello world',
-      html: htmlContent, // Correctly pass the rendered HTML
+    // Send the email using Resend
+    const data = await resend.emails.send({
+      from: fromEmail,
+      to: [fromEmail, email],
+      subject: subject,
+      react: (
+        <>
+          <h1>{subject}</h1>
+          <p>Thank you for contacting us!</p>
+          <p>New message submitted:</p>
+          <p>{message}</p>
+        </>
+      ),
     });
-
-    // Handle errors
-    if (error) {
-      return new Response(JSON.stringify({ error }), { status: 500 });
-    }
-
-    // Return the data on success
-    return new Response(JSON.stringify(data));
+    // Return the response as JSON
+    return NextResponse.json(data);
   } catch (error) {
-    // Return error response on failure
-    return new Response(JSON.stringify({ error }), { status: 500 });
+    // Return an error response if something goes wrong
+    return NextResponse.json({ error: error instanceof Error ? error.message : 'An unknown error occurred.' });
   }
 }

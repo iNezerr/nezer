@@ -1,19 +1,24 @@
-import React from 'react'
+import React from "react";
 
-type Props = {
-  name: string
-  onClick: (name:string) => void
-  iselected: boolean
+interface ProjectTagProps {
+  name: string;
+  onClick: (name: string) => void;
+  isSelected: boolean;
 }
 
-const ProjectTag = ({name, onClick, iselected}: Props) => {
-  const buttonClasses = iselected ?
-    'text-white border-purple-500' :
-    'text-[#ADB7BE] border-slate-600 hover:border-white';
+const ProjectTag: React.FC<ProjectTagProps> = ({ name, onClick, isSelected }) => {
+  const buttonStyles = isSelected
+    ? "text-white border-primary-500"
+    : "text-[#ADB7BE] border-slate-600 hover:border-white";
+
   return (
-    <button className={`${buttonClasses} rounded-full border-2
-       px-6 py-3 text-xl cursor-pointer`} onClick={()=>onClick(name)}>{name}</button>
-  )
-}
+    <button
+      className={`${buttonStyles} rounded-full border-2 px-6 py-3 text-xl cursor-pointer`}
+      onClick={() => onClick(name)}
+    >
+      {name}
+    </button>
+  );
+};
 
-export default ProjectTag
+export default ProjectTag;

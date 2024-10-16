@@ -1,92 +1,137 @@
-"use client"
-import React, { useState } from 'react'
-import ProjectCard from './ProjectCard'
-import ProjectTag from './ProjectTag'
+"use client";
+import React, { useState, useRef } from "react";
+import ProjectCard from "./ProjectCard";
+import ProjectTag from "./ProjectTag";
+import { motion, useInView } from "framer-motion";
 
-const projectsData = [
-  {
-    title: 'Project 1',
-    description: 'This is project 1',
-    imgUrl: 'https://placeholder.com/300',
-    githubUrl: 'https://github.com/project1',
-    liveUrl: 'https://project1.com',
-    tags: ['web']
-  },
-  {
-    title: 'Project 2',
-    description: 'This is project 2',
-    imgUrl: 'https://placeholder.com/300',
-    githubUrl: 'https://github.com/project2',
-    liveUrl: 'https://project2.com',
-    tags: ['mobile']
-  },
-  {
-    title: 'Project 3',
-    description: 'This is project 3',
-    imgUrl: 'https://placeholder.com/300',
-    githubUrl: 'https://github.com/project3',
-    liveUrl: 'https://project3.com',
-    tags: ['web']
-  },
-  {
-    title: 'Project 4',
-    description: 'This is project 4',
-    imgUrl: 'https://placeholder.com/300',
-    githubUrl: 'https://github.com/project4',
-    liveUrl: 'https://project4.com',
-    tags: ['mobile']
-  },
-  {
-    title: 'Project 5',
-    description: 'This is project 5',
-    imgUrl: 'https://placeholder.com/300',
-    githubUrl: 'https://github.com/project5',
-    liveUrl: 'https://project5.com',
-    tags: ['web']
-  },
-  {
-    title: 'Project 6',
-    description: 'This is project 6',
-    imgUrl: 'https://placeholder.com/300',
-    githubUrl: 'https://github.com/project6',
-    liveUrl: 'https://project6.com',
-    tags: ['mobile']
-  }
-]
-type Props = {}
-
-const ProjectsSection = (props: Props) => {
-  const [tag, setTag] = useState("all");
-  const handleTagChange = (tag: string) => {
-    setTag(tag)
-  };
-  const filteredProjects = projectsData.filter((project) =>
-    project.tags.includes(tag) || tag === 'all'
-  );
-  return (
-    <div
-      className=""
-    >
-      <h2 className='text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12'>My Projects</h2>
-      <div className='text-white flex flex-tow justify-center items-centerr gap-2 py-6'>
-        <ProjectTag name='All' onClick={() => handleTagChange('all')} iselected={tag === 'all'} />
-        <ProjectTag name='Web' onClick={() => handleTagChange('web')} iselected={tag === 'web'} />
-        <ProjectTag name='Mobile' onClick={() => handleTagChange('mobile')} iselected={tag === 'mobile'} />
-      </div>
-      <div className='grid md:grid-cols-3 gap-8 md:gap-12'>
-        {filteredProjects.map((project, index) => (
-          <ProjectCard
-            key={index}
-            title={project.title}
-            description={project.description}
-            imgUrl={project.imgUrl}
-            githubUrl={project.githubUrl}
-            liveUrl={project.liveUrl}
-          />
-        ))}
-      </div>
-    </div>
-  )
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  tag: string[];
+  gitUrl: string;
+  previewUrl: string;
 }
 
-export default ProjectsSection
+const projectsData: Project[] = [
+  {
+    id: 1,
+    title: "React Portfolio Website",
+    description: "Project 1 description",
+    image: "/images/projects/1.png",
+    tag: ["All", "Web"],
+    gitUrl: "/",
+    previewUrl: "/",
+  },
+  {
+    id: 2,
+    title: "Photography Portfolio Website",
+    description: "Project 2 description",
+    image: "/images/projects/2.png",
+    tag: ["All", "Web"],
+    gitUrl: "/",
+    previewUrl: "/",
+  },
+  {
+    id: 3,
+    title: "E-commerce Application",
+    description: "Project 3 description",
+    image: "/images/projects/3.png",
+    tag: ["All", "Web"],
+    gitUrl: "/",
+    previewUrl: "/",
+  },
+  {
+    id: 4,
+    title: "Food Ordering Application",
+    description: "Project 4 description",
+    image: "/images/projects/4.png",
+    tag: ["All", "Mobile"],
+    gitUrl: "/",
+    previewUrl: "/",
+  },
+  {
+    id: 5,
+    title: "React Firebase Template",
+    description: "Authentication and CRUD operations",
+    image: "/images/projects/5.png",
+    tag: ["All", "Web"],
+    gitUrl: "/",
+    previewUrl: "/",
+  },
+  {
+    id: 6,
+    title: "Full-stack Roadmap",
+    description: "Project 5 description",
+    image: "/images/projects/6.png",
+    tag: ["All", "Web"],
+    gitUrl: "/",
+    previewUrl: "/",
+  },
+];
+
+const ProjectsSection: React.FC = () => {
+  const [tag, setTag] = useState<string>("All");
+  const ref = useRef<HTMLUListElement | null>(null);
+  const isInView = useInView(ref, { once: true });
+
+  const handleTagChange = (newTag: string) => {
+    setTag(newTag);
+  };
+
+  const filteredProjects = projectsData.filter((project) =>
+    project.tag.includes(tag)
+  );
+
+  const cardVariants = {
+    initial: { y: 50, opacity: 0 },
+    animate: { y: 0, opacity: 1 },
+  };
+
+  return (
+    <section id="projects">
+      <h2 className="text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12">
+        My Projects
+      </h2>
+      <div className="text-white flex flex-row justify-center items-center gap-2 py-6">
+        <ProjectTag
+          onClick={handleTagChange}
+          name="All"
+          isSelected={tag === "All"}
+        />
+        <ProjectTag
+          onClick={handleTagChange}
+          name="Web"
+          isSelected={tag === "Web"}
+        />
+        <ProjectTag
+          onClick={handleTagChange}
+          name="Mobile"
+          isSelected={tag === "Mobile"}
+        />
+      </div>
+      <ul ref={ref} className="grid md:grid-cols-3 gap-8 md:gap-12">
+        {filteredProjects.map((project, index) => (
+          <motion.li
+            key={project.id}
+            variants={cardVariants}
+            initial="initial"
+            animate={isInView ? "animate" : "initial"}
+            transition={{ duration: 0.3, delay: index * 0.4 }}
+          >
+            <ProjectCard
+              title={project.title}
+              description={project.description}
+              imgUrl={project.image}
+              gitUrl={project.gitUrl}
+              previewUrl={project.previewUrl}
+            />
+          </motion.li>
+        ))}
+      </ul>
+    </section>
+  );
+};
+
+export default ProjectsSection;
