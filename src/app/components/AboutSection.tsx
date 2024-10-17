@@ -12,37 +12,49 @@ interface TabData {
 
 const TAB_DATA: TabData[] = [
   {
-    title: "Skills",
+    title: "skills",
     id: "skills",
     content: (
-      <ul className="list-disc pl-2">
-        <li>Node.js</li>
-        <li>Express</li>
-        <li>PostgreSQL</li>
-        <li>Sequelize</li>
-        <li>JavaScript</li>
-        <li>React</li>
-      </ul>
+      <div className="text-base lg:text-lg">
+        <ul className="list-disc list-inside">
+          <li>JavaScript (ES6+)</li>
+          <li>React</li>
+          <li>Node.js</li>
+          <li>Express</li>
+          <li>HTML5</li>
+          <li>CSS3</li>
+          <li>PostgreSQL</li>
+          <li>Git</li>
+        </ul>
+      </div>
     ),
   },
   {
-    title: "Education",
+    title: "education",
     id: "education",
     content: (
-      <ul className="list-disc pl-2">
-        <li>Fullstack Academy of Code</li>
-        <li>University of California, Santa Cruz</li>
-      </ul>
+      <div className="text-base lg:text-lg">
+        <p>
+          Bachelor of Science in Information Technology
+          <br />
+          Garden City University College
+        </p>
+      </div>
     ),
   },
   {
-    title: "Certifications",
+    title: "certifications",
     id: "certifications",
     content: (
-      <ul className="list-disc pl-2">
-        <li>AWS Cloud Practitioner</li>
-        <li>Google Professional Cloud Developer</li>
-      </ul>
+      <div className="text-base lg:text-lg">
+        <ul className="list-disc list-inside">
+          <li>Meta Back-End Developer Professional Certificate</li>
+          <li>Google Advanced Data Analytics</li>
+          <li>Meta Front-End Developer Professional Certificate</li>
+          <li>Google IT Support Professional Certificate</li>
+          {/* <li>Quality Assurance</li> */}
+        </ul>
+      </div>
     ),
   },
 ];
