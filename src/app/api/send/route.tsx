@@ -1,9 +1,12 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
+import { MailerSend, EmailParams, Sender, Recipient } from "mailersend";
 
-// Initialize Resend with the API key from environment variables
-const resend = new Resend(process.env.RESEND_API_KEY);
-const fromEmail = process.env.FROM_EMAIL || '';
+// Initialize MailerSend with the API key from environment variables
+const mailerSend = new MailerSend({
+  apiKey: process.env.API_KEY || "",
+});
+
+const fromEmail = process.env.FROM_EMAIL || 'nezerabsolute@gmail.com'; // Your email as the sender
 
 // Define the request body type
 interface EmailRequest {
@@ -18,24 +21,30 @@ export async function POST(req: Request) {
   console.log(email, subject, message);
 
   try {
-    // Send the email using Resend
-    const data = await resend.emails.send({
-      from: fromEmail,
-      to: [fromEmail, email],
-      subject: subject,
-      react: (
-        <>
-          <h1>{subject}</h1>
-          <p>Thank you for contacting us!</p>
-          <p>New message submitted:</p>
-          <p>{message}</p>
-        </>
-      ),
-    });
+    // Set the sender and recipient (only yourself)
+    const sentFrom = new Sender(fromEmail, " Nezer");
+    const recipients = [
+      new Recipient(fromEmail, "Eben") // Send to yourself
+    ];
+
+    // Configure the email parameters
+    const emailParams = new EmailParams()
+      .setFrom(sentFrom) // Sender (yourself)
+      .setTo(recipients) // Recipient (yourself)
+      .setReplyTo(sentFrom) // Reply-to goes to you
+      .setSubject(subject) // Subject from the request
+      .setHtml(`<strong>Message from: ${email}</strong><p>${message}</p>`) // HTML content
+      .setText(`Message from: ${email}\n\n${message}`); // Text content fallback
+
+    // Send the email using MailerSend
+    const data = await mailerSend.email.send(emailParams);
+
     // Return the response as JSON
     return NextResponse.json(data);
   } catch (error) {
     // Return an error response if something goes wrong
-    return NextResponse.json({ error: error instanceof Error ? error.message : 'An unknown error occurred.' });
+    return NextResponse.json({
+      error: error instanceof Error ? error.message : 'An unknown error occurred.'
+    });
   }
 }

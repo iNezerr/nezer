@@ -17,22 +17,19 @@ const HeroSection = (props: Props) => {
               sequence={[
                 "Ebenezer Agbekeye",
                 1000,
-                " a frontend Engineer",
-                1000,
+                " a Frontend Engineer",
+                900,
                 " a Backend Engineer",
-                1000,
-                "an AI Engineer",
-                1000,
-                "a Machine Learning Engineer",
-                1000,
+                900
               ]}
               wrapper='span'
               speed={50}
               repeat={Infinity}
             />
           </h1>
-          <p className='text-[#ADB7BE] text-base sm:text-lg lg:text-xl '>Backend Engineer with 4+ years of experience in software development, specializing in scalable web applications
-            and API integrations.
+          <p className='text-[#ADB7BE] text-base sm:text-lg lg:text-xl '>Full Stack Engineer
+            specializing in Python (Django), PHP (Laravel), Node.js, and React,
+            dedicated to building scalable and innovative web applications.
           </p>
           <div>
             <button className='px-6 py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 hover:bg-slate-200 text-white'>Hire Me</button>
