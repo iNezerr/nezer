@@ -1,12 +1,10 @@
-import { NextResponse } from "next/server";
-import { MailerSend, EmailParams, Sender, Recipient } from "mailersend";
+const { Recipient, EmailParams, MailerSend } = require("mailersend");
 
-// Initialize MailerSend with the API key from environment variables
-const mailerSend = new MailerSend({
-  apiKey: process.env.API_KEY || "",
+const mailersend = new MailerSend({
+  apiKey: process.env.API_KEY || "", // Use API key from environment variables
 });
 
-const fromEmail = process.env.FROM_EMAIL || 'nezerabsolute@gmail.com'; // Your email as the sender
+const fromEmail = process.env.FROM_EMAIL || "nezerabsolute@gmail.com"; // Your email as the sender and recipient
 
 // Define the request body type
 interface EmailRequest {
@@ -15,36 +13,29 @@ interface EmailRequest {
   message: string;
 }
 
-export async function POST(req: Request) {
+export async function POST(req: { json: () => EmailRequest | PromiseLike<EmailRequest>; }) {
   // Parse the incoming request body
   const { email, subject, message }: EmailRequest = await req.json();
+
   console.log(email, subject, message);
 
+  const recipients = [new Recipient(fromEmail, "Your Name")]; // Send to yourself
+
+  const emailParams = new EmailParams()
+    .setFrom(fromEmail) // Set your own email as the sender
+    .setFromName("Your Name") // Your name as sender
+    .setRecipients(recipients) // You as the recipient
+    .setSubject(subject) // Subject from the form submission
+    .setHtml(`<p>Message from: ${email}</p><p>${message}</p>`) // HTML message body
+    .setText(`Message from: ${email}\n\n${message}`); // Text message body
+
   try {
-    // Set the sender and recipient (only yourself)
-    const sentFrom = new Sender(fromEmail, " Nezer");
-    const recipients = [
-      new Recipient(fromEmail, "Eben") // Send to yourself
-    ];
-
-    // Configure the email parameters
-    const emailParams = new EmailParams()
-      .setFrom(sentFrom) // Sender (yourself)
-      .setTo(recipients) // Recipient (yourself)
-      .setReplyTo(sentFrom) // Reply-to goes to you
-      .setSubject(subject) // Subject from the request
-      .setHtml(`<strong>Message from: ${email}</strong><p>${message}</p>`) // HTML content
-      .setText(`Message from: ${email}\n\n${message}`); // Text content fallback
-
-    // Send the email using MailerSend
-    const data = await mailerSend.email.send(emailParams);
-
-    // Return the response as JSON
-    return NextResponse.json(data);
+    // Send the email
+    const response = await mailersend.send(emailParams);
+    console.log('Email sent successfully:', response);
+    return response;
   } catch (error) {
-    // Return an error response if something goes wrong
-    return NextResponse.json({
-      error: error instanceof Error ? error.message : 'An unknown error occurred.'
-    });
+    console.error('Error sending email:', error);
+    throw error;
   }
 }

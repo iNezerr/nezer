@@ -10,31 +10,52 @@ const EmailSection: React.FC = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const formData = new FormData(e.currentTarget);
+    console.log("Form data:", formData);
     const data = {
-      email: formData.get("email") as string,
-      subject: formData.get("subject") as string,
-      message: formData.get("message") as string,
+      from: {
+        email: "no-reply@trial-3zxk54v220pljy6v.mlsender.net", // Your verified domain
+        name: "myCodeEdge", // Company name
+      },
+      to: [
+        {
+          email: "nezerabsolute@gmail.com", // Your email
+          name: "Your Name", // Optional: Recipient name
+        },
+      ],
+      subject: formData.get("subject") as string, // Email subject
+      text: formData.get("message") as string, // Email message
     };
-    const JSONdata = JSON.stringify(data);
-    const endpoint = "/api/send";
+
+    const endpoint = "https://api.mailersend.com/v1/email"; // MailerSend API endpoint
 
     const options = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${process.env.API_KEY}`, // Your API key
       },
-      body: JSONdata,
+      body: JSON.stringify(data),
     };
 
-    const response = await fetch(endpoint, options);
-    const resData = await response.json();
+    try {
+      const response = await fetch(endpoint, options);
+      const resData = await response.json();
 
-    if (response.status === 200) {
-      console.log("Message sent.");
-      setEmailSubmitted(true);
+      if (response.ok) {
+        console.log("Message sent successfully.");
+        setEmailSubmitted(true);
+      } else {
+        console.error("Error sending message:", resData.message);
+      }
+    } catch (error) {
+      console.error("Network error:", error);
     }
   };
+
+
+
 
   return (
     <section
