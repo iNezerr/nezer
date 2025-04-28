@@ -16,8 +16,12 @@ const navLinks: NavLinkType[] = [
     path: "#about",
   },
   {
-    title: "Projects",
-    path: "#projects",
+    title: "Work",
+    path: "#work",
+  },
+  {
+    title: "Blog",
+    path: "#blog",
   },
   {
     title: "Contact",

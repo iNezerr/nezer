@@ -1,5 +1,5 @@
 import React from "react";
-import { CodeBracketIcon, EyeIcon } from "@heroicons/react/24/outline";
+import { CodeBracketIcon, EyeIcon, HeartIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
 interface ProjectCardProps {
@@ -8,6 +8,7 @@ interface ProjectCardProps {
   description: string;
   gitUrl: string;
   previewUrl: string;
+  impact?: string;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -16,12 +17,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   description,
   gitUrl,
   previewUrl,
+  impact,
 }) => {
   return (
-    <div>
+    <div className="group">
       <div
-        className="h-52 md:h-72 rounded-t-xl relative group"
-        style={{ background: `url(${imgUrl})`, backgroundSize: "cover" }}
+        className="h-52 md:h-72 rounded-t-xl relative overflow-hidden group"
+        style={{ background: `url(${imgUrl})`, backgroundSize: "cover", backgroundPosition: "center" }}
       >
         <div className="overlay items-center justify-center absolute top-0 left-0 w-full h-full bg-[#181818] bg-opacity-0 hidden group-hover:flex group-hover:bg-opacity-80 transition-all duration-500">
           <Link
@@ -38,9 +40,18 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           </Link>
         </div>
       </div>
-      <div className="text-white rounded-b-xl mt-3 bg-[#181818] py-6 px-4">
-        <h5 className="text-xl font-semibold mb-2">{title}</h5>
-        <p className="text-[#ADB7BE]">{description}</p>
+      <div className="text-white rounded-b-xl bg-[#181818] py-6 px-4 border-[1px] border-[#181818] transition-all duration-300 group-hover:border-purple-500/50">
+        <h5 className="text-xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">{title}</h5>
+        <p className="text-[#ADB7BE] mb-4">{description}</p>
+        {impact && (
+          <div className="mt-4 pt-4 border-t border-gray-800">
+            <div className="flex items-center mb-2">
+              <HeartIcon className="h-5 w-5 text-pink-400 mr-2" />
+              <span className="text-sm text-white font-medium">Why It Matters</span>
+            </div>
+            <p className="text-[#ADB7BE] text-sm italic">{impact}</p>
+          </div>
+        )}
       </div>
     </div>
   );
