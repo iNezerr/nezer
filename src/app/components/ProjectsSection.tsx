@@ -1,17 +1,14 @@
 "use client";
-import React, { useState, useRef } from "react";
-import ProjectCard from "./ProjectCard";
-import ProjectTag from "./ProjectTag";
-import { motion, useInView } from "framer-motion";
-import { HeartIcon, LightBulbIcon } from "@heroicons/react/24/outline";
+import React, { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 
 interface Project {
   id: number;
   title: string;
   description: string;
   image: string;
-  impact: string;
-  tag: string[];
+  tags: string[];
   gitUrl: string;
   previewUrl: string;
 }
@@ -19,149 +16,128 @@ interface Project {
 const projectsData: Project[] = [
   {
     id: 1,
-    title: "Eden AI Tutor",
-    description: "A Python-based educational app built to personalize learning. " +
-    "Behind the scenes, this combines Django with custom AI algorithms " +
-    "that adapt to each student's unique learning style.",
-    impact: "Seeing students' eyes light up when they finally understand a difficult concept makes every line of code worthwhile.",
+    title: "Pursfi",
+    description: "A Landing Page for the Pursfi Finance App. Built using Next.js, Framer motion and Tailwind CSS.",
     image: "/images/projects/1.png",
-    tag: ["All", "AI", "Python"],
-    gitUrl: "/",
-    previewUrl: "/",
+    tags: ["Next.js", "Typescript", "Framer Motion", "Tailwind CSS"],
+    gitUrl: "https://github.com/Praizee",
+    previewUrl: "https://pursfi-home.vercel.app/",
   },
   {
     id: 2,
-    title: "DeepGreen City Planner",
-    description: "A platform that helps urban planners visualize how green spaces " +
-    "impact community wellbeing. It combines geospatial analysis with machine learning " +
-    "to predict environmental outcomes of planning decisions.",
-    impact: "Creating technology that helps build more sustainable, healthier communities reflects my belief that code should serve a greater purpose.",
+    title: "Lazynerd Studios",
+    description: "A landing page for a creative agency. Features custom animations with Framer Motion, and a minimalistic design using Next.js and Tailwind CSS.",
     image: "/images/projects/2.png",
-    tag: ["All", "AI", "Web"],
-    gitUrl: "/",
-    previewUrl: "/",
+    tags: ["Next.js", "Typescript", "Framer Motion", "Tailwind CSS"],
+    gitUrl: "https://github.com/Praizee",
+    previewUrl: "https://www.lazynerdstudios.com/",
   },
   {
     id: 3,
-    title: "Photovista Portfolio",
-    description: "A dynamic photography platform built with Flask and AWS, " +
-    "where visual storytelling meets technical excellence. More than just images, " +
-    "it's about capturing moments that matter and sharing them with the world.",
-    impact: "This project blends my technical skills with my love for photography—a reminder that our diverse passions make us better creators.",
+    title: "Gradific",
+    description: "Gradific is a platform that connects students with tutors for personalized learning experiences.",
     image: "/images/projects/3.png",
-    tag: ["All", "Web", "Python"],
-    gitUrl: "/",
-    previewUrl: "/",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    gitUrl: "https://github.com/Praizee",
+    previewUrl: "https://gradific.com/",
   },
   {
     id: 4,
-    title: "TeamSync Collaboration Tool",
-    description: "An open-source tool that streamlines remote collaboration " +
-    "through Python microservices and Docker containers. It addresses the " +
-    "human challenges of distributed teams through thoughtful automation.",
-    impact: "I believe technology should bring people together. This project helps teams feel connected despite physical distance.",
+    title: "ShopDesk",
+    description: "ShopDesk is a cloud based inventory management software that helps you track stock, process sales, and generate business records so you can focus on growing your business.",
     image: "/images/projects/4.png",
-    tag: ["All", "Python", "Web"],
-    gitUrl: "/",
-    previewUrl: "/",
+    tags: ["Next.js", "Tailwind CSS", "Framer Motion", "TypeScript"],
+    gitUrl: "https://github.com/Praizee",
+    previewUrl: "https://shopdesk.im/",
+  },
+  {
+    id: 5,
+    title: "MovieSync",
+    description: "MovieSync 🎬 – A Next.js app for browsing, bookmarking, and favoriting movies, with authentication and cross-device syncing. Powered by TMDB API and Supabase.",
+    image: "/images/projects/5.png",
+    tags: ["TMDB API", "Next.js", "Tailwind CSS", "Supabase"],
+    gitUrl: "https://github.com/Praizee",
+    previewUrl: "https://moviesync-tan.netlify.app/",
+  },
+  {
+    id: 6,
+    title: "Jumia Nigeria Online Shopping — Clone",
+    description: "A Progressive Web App (PWA) clone of Jumia Nigeria's online shopping platform. Mimicking key features like product listings, search, and cart functionalities using Next.js and Tailwind CSS.",
+    image: "/images/projects/6.png",
+    tags: ["Next.js", "Tailwind CSS"],
+    gitUrl: "https://github.com/Praizee/jumia-ng-clone",
+    previewUrl: "https://jumia-ng-clone.vercel.app/",
   }
 ];
 
-const WorkSection: React.FC = () => {
-  const [tag, setTag] = useState<string>("All");
-  const ref = useRef<HTMLUListElement | null>(null);
-  const isInView = useInView(ref, { once: true });
-
-  const handleTagChange = (newTag: string) => {
-    setTag(newTag);
-  };
-
-  const filteredProjects = projectsData.filter((project) =>
-    project.tag.includes(tag)
-  );
-
-  const cardVariants = {
-    initial: { y: 50, opacity: 0 },
-    animate: { y: 0, opacity: 1 },
-  };
-
+const ProjectsSection: React.FC = () => {
   return (
-    <section id="work">
-      <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-pink-400 mb-4">My Work, My Purpose</h2>
-        <p className="text-[#ADB7BE] text-center mb-4 max-w-3xl mx-auto">
-          These projects represent more than code—they're expressions of purpose. Each one began with a question: 
-          <span className="italic text-white ml-1">How can I use my skills to make life better for someone?</span>
-        </p>
-        <p className="text-[#ADB7BE] text-center mb-6 max-w-2xl mx-auto">
-          I approach every challenge by first listening deeply, then crafting solutions that blend technical 
-          excellence with human understanding.
-        </p>
-        <div className="w-24 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 mx-auto rounded-full"></div>
-      </div>
+    <section id="projects" className="py-12">
+      <h2 className="text-2xl font-bold mb-8 font-mono">My Projects</h2>
+      <p className="text-white/80 mb-12">
+        Explore my portfolio of web applications built with modern technologies. Each
+        project represents a unique challenge and creative solution.
+      </p>
       
-      <div className="text-white flex flex-row flex-wrap justify-center items-center gap-2 py-6">
-        <ProjectTag
-          onClick={handleTagChange}
-          name="All"
-          isSelected={tag === "All"}
-        />
-        <ProjectTag
-          onClick={handleTagChange}
-          name="Web"
-          isSelected={tag === "Web"}
-        />
-        <ProjectTag
-          onClick={handleTagChange}
-          name="Python"
-          isSelected={tag === "Python"}
-        />
-        <ProjectTag
-          onClick={handleTagChange}
-          name="AI"
-          isSelected={tag === "AI"}
-        />
-      </div>
-      
-      <ul ref={ref} className="grid md:grid-cols-2 lg:grid-cols-2 gap-10 md:gap-12">
-        {filteredProjects.map((project, index) => (
-          <motion.li
-            key={project.id}
-            variants={cardVariants}
-            initial="initial"
-            animate={isInView ? "animate" : "initial"}
-            transition={{ duration: 0.3, delay: index * 0.4 }}
-            className="relative"
-          >
-            <ProjectCard
-              title={project.title}
-              description={project.description}
-              imgUrl={project.image}
-              gitUrl={project.gitUrl}
-              previewUrl={project.previewUrl}
-              impact={project.impact}
-            />
-            
-            {index % 2 === 0 ? (
-              <div className="hidden md:block absolute -left-4 top-1/2 transform -translate-y-1/2 -translate-x-full">
-                <HeartIcon className="h-6 w-6 text-pink-500/30" />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {projectsData.map((project) => (
+          <div key={project.id} className="bg-[#1e1e1e] border border-[#333] hover:border-[#38bdf8] transition-all duration-300">
+            <div className="relative overflow-hidden">
+              <Image 
+                src={project.image} 
+                alt={project.title} 
+                width={600} 
+                height={300}
+                className="w-full h-auto"
+              />
+              <div className="absolute inset-0 bg-black/70 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                <Link 
+                  href={project.previewUrl}
+                  target="_blank"
+                  rel="noopener noreferrer" 
+                  className="px-4 py-2 border border-white text-white hover:bg-white hover:text-black transition-all duration-300"
+                >
+                  View Details
+                </Link>
               </div>
-            ) : (
-              <div className="hidden md:block absolute -right-4 top-1/2 transform -translate-y-1/2 translate-x-full">
-                <LightBulbIcon className="h-6 w-6 text-yellow-500/30" />
+            </div>
+            <div className="p-6">
+              <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+              <p className="text-white/70 mb-4">{project.description}</p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {project.tags.map((tag, index) => (
+                  <span 
+                    key={index} 
+                    className="text-xs text-white/90 bg-[#333] px-2 py-1"
+                  >
+                    {tag}
+                  </span>
+                ))}
               </div>
-            )}
-          </motion.li>
+              <div className="flex gap-4">
+                <Link 
+                  href={project.gitUrl}
+                  target="_blank"
+                  rel="noopener noreferrer" 
+                  className="text-white/80 hover:text-[#38bdf8] transition-colors"
+                >
+                  View GitHub repository
+                </Link>
+                <Link 
+                  href={project.previewUrl}
+                  target="_blank"
+                  rel="noopener noreferrer" 
+                  className="text-[#38bdf8] hover:text-[#38bdf8]/80 transition-colors"
+                >
+                  View live demo
+                </Link>
+              </div>
+            </div>
+          </div>
         ))}
-      </ul>
-      
-      <div className="text-center mt-12">
-        <p className="text-[#ADB7BE] italic">
-          "The best code is written with both hands and heart."
-        </p>
       </div>
     </section>
   );
 };
 
-export default WorkSection;
+export default ProjectsSection;

@@ -8,70 +8,74 @@ type Props = {}
 
 const HeroSection = (props: Props) => {
   return (
-    <section className="relative">
-      <div className="absolute top-[-50px] left-0 right-0 h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-30"></div>
-      <div className="grid grid-cols-1 lg:grid-cols-12">
-        <div className="col-span-7 place-self-center text-center sm:text-left">
-          <h1 className='text-[#ADB7BE] mb-4 text-4xl sm:text-5xl lg:text-6xl font-extrabold'>
-            <span className='text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400'>Hi, I'm Eben {""}</span>
-            <br />
-            <TypeAnimation
-              sequence={[
-                "a believer in purpose-driven code",
-                1000,
-                "a Senior Python Engineer",
-                900,
-                "a passionate problem solver",
-                900
-              ]}
-              wrapper='span'
-              speed={50}
-              repeat={Infinity}
-            />
+    <section className="relative py-16 md:py-24">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div className="col-span-7 place-self-center text-left">
+          <h1 className='text-white mb-4 text-2xl sm:text-3xl lg:text-4xl font-bold font-mono'>
+            Frontend Developer
           </h1>
-          <p className='text-[#ADB7BE] text-base sm:text-lg lg:text-xl mb-6'>
-            I'm a developer who believes that <span className="text-white">technology should touch hearts</span>, not just screens. 
-            With over 5 years of experience, I craft solutions that make a genuine difference in 
-            people's lives, guided by faith and a desire to serve through code.
+          <p className='text-white/80 text-base sm:text-lg mb-6 max-w-2xl'>
+            Transforming ideas into seamless, beautiful experiences one pixel at a time.
           </p>
-          <div className='mb-8'>
-            <ul className="text-[#ADB7BE] list-disc list-inside text-sm sm:text-base space-y-2">
-              <li className="transition-all duration-300 hover:translate-x-1">
-                <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Faith and Purpose:</span> My work is an extension of my integrity, compassion, and excellence shine through everything I build.
-              </li>
-              <li className="transition-all duration-300 hover:translate-x-1">
-                <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Creative Solutions:</span> I find joy in the harmony of logic and creativity in every challenge.
-              </li>
-              <li className="transition-all duration-300 hover:translate-x-1">
-                <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Sharing the Journey:</span> Knowledge grows when shared. I'm passionate about lifting others through mentorship and community.
-              </li>
-            </ul>
-          </div>
-          <div>
-            <Link href="#contact" className='px-6 py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 text-white inline-block transition-all duration-300 transform hover:scale-105'>Let's Connect</Link>
-            <Link href="https://linkedin.com/in/ebenezer-agbekeye" target="_blank" rel="noopener noreferrer" className='px-1 py-1 w-full sm:w-fit rounded-full bg-transparent bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 hover:bg-slate-800 text-white mt-3 inline-block'>
-              <span className='block bg-[#121212] hover:bg-slate-800 rounded-full p-5 transition-all duration-300'>View My Journey</span>
+          <div className='flex flex-wrap gap-4 mb-8'>
+            <Link 
+              href="/projects" 
+              className='px-5 py-3 border border-[#38bdf8] bg-transparent text-white hover:bg-[#38bdf8]/10 transition-all duration-300'
+            >
+              View My Work
             </Link>
+            <a 
+              href="/files/stephen-adeniji-resume.pdf" 
+              download
+              className='px-5 py-3 border border-white/30 bg-transparent text-white hover:bg-white/5 transition-all duration-300'
+            >
+              Download Resume
+            </a>
           </div>
-          <div className="mt-6">
-            <span className="text-[#ADB7BE] italic text-sm">"Code is poetry with purpose—each line an opportunity to make someone's day better."</span>
+          
+          <div className="flex items-center space-x-4 mt-6">
+            <a href="https://github.com/Praizee" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <Image 
+                src="/github-icon.svg" 
+                width={24} 
+                height={24} 
+                alt="GitHub"
+                className="hover:opacity-80 transition-opacity"
+              />
+            </a>
+            <a href="https://www.linkedin.com/in/stephen-adeniji/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <Image 
+                src="/linkedin-icon.svg" 
+                width={24} 
+                height={24} 
+                alt="LinkedIn"
+                className="hover:opacity-80 transition-opacity"
+              />
+            </a>
+            <a href="https://x.com/steve_ade1407" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L18.901 1.153ZM17.61 20.644h2.039L6.486 3.24H4.298L17.61 20.644Z" fill="white"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/steve_ade14/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.148-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" fill="white"/>
+              </svg>
+            </a>
           </div>
         </div>
         <div className="col-span-5 place-self-center mt-8 lg:mt-0">
-          <div className="rounded-full bg-gradient-to-br p-1 from-blue-500 via-purple-500 to-pink-500">
-            <div className="rounded-full bg-[#181818] w-[250px] h-[250px] lg:w-[400px] lg:h-[400px] relative overflow-hidden flex items-center justify-center">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10"></div>
-              <Image
-                className='relative z-10 transform transition-all duration-500 hover:scale-105'
-                src='/images/Ebenezer_Agbekeye.png'
-                width={220}
-                height={220}
-                alt='Ebenezer Agbekeye' />
-            </div>
+          <div className="border border-[#333] p-1">
+            <Image 
+              src="/images/hero-image.png"
+              width={400} 
+              height={400} 
+              alt="Hero image"
+              className="w-full h-auto"
+            />
           </div>
         </div>
       </div>
-      <div className="w-24 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 mx-auto mt-16 rounded-full"></div>
     </section>
   )
 }
