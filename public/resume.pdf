@@ -1,0 +1,109 @@
+%PDF-1.4
+1 0 obj
+<<
+/Title (Resume - NEZER)
+/Author (NEZER)
+/Creator (NEZER Portfolio)
+/Producer (Custom PDF Creator)
+/CreationDate (D:20250522120000)
+>>
+endobj
+2 0 obj
+<<
+/Type /Catalog
+/Pages 3 0 R
+>>
+endobj
+3 0 obj
+<<
+/Type /Pages
+/Kids [4 0 R]
+/Count 1
+>>
+endobj
+4 0 obj
+<<
+/Type /Page
+/Parent 3 0 R
+/Resources <<
+/Font <<
+/F1 5 0 R
+/F2 6 0 R
+>>
+>>
+/MediaBox [0 0 612 792]
+/Contents 7 0 R
+>>
+endobj
+5 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica-Bold
+>>
+endobj
+6 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica
+>>
+endobj
+7 0 obj
+<< /Length 676 >>
+stream
+BT
+/F1 24 Tf
+50 700 Td
+(NEZER) Tj
+/F2 12 Tf
+0 -20 Td
+(Web Developer & Designer) Tj
+0 -20 Td
+(Email: contact@nezer.dev | Website: www.nezer.dev) Tj
+/F1 16 Tf
+-50 -40 Td
+(Experience) Tj
+/F2 12 Tf
+0 -20 Td
+(Senior Frontend Developer | 2022 - Present) Tj
+10 -15 Td
+(Led the development of various web applications using React, TypeScript, and modern CSS frameworks.) Tj
+-10 -30 Td
+(Full Stack Developer | 2020 - 2022) Tj
+10 -15 Td
+(Developed and maintained full-stack applications with React, Node.js, and MongoDB.) Tj
+-10 -30 Td
+/F1 16 Tf
+(Skills) Tj
+/F2 12 Tf
+0 -20 Td
+(React, TypeScript, Node.js, Tailwind CSS, MongoDB, Next.js, UI/UX Design) Tj
+/F1 16 Tf
+0 -30 Td
+(Education) Tj
+/F2 12 Tf
+0 -20 Td
+(Bachelor of Science in Computer Science | 2016 - 2020) Tj
+ET
+endstream
+endobj
+xref
+0 8
+0000000000 65535 f
+0000000009 00000 n
+0000000146 00000 n
+0000000195 00000 n
+0000000252 00000 n
+0000000395 00000 n
+0000000467 00000 n
+0000000534 00000 n
+trailer
+<<
+/Size 8
+/Root 2 0 R
+/Info 1 0 R
+>>
+startxref
+1261
+%%EOF
