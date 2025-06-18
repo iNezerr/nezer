@@ -8,7 +8,7 @@ interface TestimonialProps {
   isActive: boolean;
 }
 
-const Testimonial: React.FC<TestimonialProps> = ({ text, name, position, index, isActive }) => {
+const Testimonial: React.FC<TestimonialProps> = ({ text, name, position, isActive }) => {
   return (
     <div 
       className={`absolute top-0 left-0 w-full h-full flex flex-col justify-center transition-opacity duration-700 p-6 md:p-12 ${
