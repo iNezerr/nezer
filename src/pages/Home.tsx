@@ -120,49 +120,81 @@ const Home: React.FC = () => {
           <div className="max-w-6xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-12">My Work, My Purpose</h2>
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-white dark:bg-gray-900 rounded-lg p-8 shadow-lg">
-                <h3 className="text-2xl font-bold mb-4">Eden AI Tutor</h3>
+              <a 
+                href="https://mytoeflhelper.vercel.app" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-white dark:bg-gray-900 rounded-lg p-8 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 cursor-pointer group"
+              >
+                <h3 className="text-2xl font-bold mb-4 group-hover:text-blue-600 transition-colors">myTOEFLHelper</h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  A Python-based educational app built to personalize learning. Behind the scenes, this combines Django with custom AI algorithms that adapt to each student's unique learning style.
+                  A TOEFL preparation platform built with React (Vite, TypeScript, Tailwind) on the frontend and Django REST Framework with PostgreSQL on the backend. It features mock tests, performance analytics, timed simulations, and personalized feedback—designed to help students in non-English speaking countries prepare effectively.
                 </p>
                 <p className="text-blue-600 font-semibold">Why It Matters</p>
                 <p className="text-gray-600 dark:text-gray-300">
-                  Seeing students' eyes light up when they finally understand a difficult concept makes every line of code worthwhile.
+                  Many brilliant students miss out on global opportunities due to language barriers. This platform exists to level the field and give them a fair shot.
                 </p>
-              </div>
+                <div className="mt-4 text-blue-600 font-medium group-hover:underline">
+                  Visit Project →
+                </div>
+              </a>
               
-              <div className="bg-white dark:bg-gray-900 rounded-lg p-8 shadow-lg">
-                <h3 className="text-2xl font-bold mb-4">DeepGreen City Planner</h3>
+              <a 
+                href="https://zenovaoil.com.ng" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-white dark:bg-gray-900 rounded-lg p-8 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 cursor-pointer group"
+              >
+                <h3 className="text-2xl font-bold mb-4 group-hover:text-blue-600 transition-colors">Zenova Oil Platform</h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  A platform that helps urban planners visualize how green spaces impact community wellbeing. It combines geospatial analysis with machine learning to predict environmental outcomes.
+                  A complete digital system for a Nigerian oil distribution company. Built with React (frontend) and Django (backend), it powers both the corporate website and a web app for ordering gas and oil. The app supports guest ordering, with account-based discounts after multiple purchases.
                 </p>
                 <p className="text-blue-600 font-semibold">Why It Matters</p>
                 <p className="text-gray-600 dark:text-gray-300">
-                  Creating technology that helps build more sustainable, healthier communities reflects my belief that code should serve a greater purpose.
+                  Fuel is a daily need. This platform makes it easier and safer for people to order oil and gas without stress. It also supports local economic growth with real, usable tech.
                 </p>
-              </div>
+                <div className="mt-4 text-blue-600 font-medium group-hover:underline">
+                  Visit Project →
+                </div>
+              </a>
               
-              <div className="bg-white dark:bg-gray-900 rounded-lg p-8 shadow-lg">
-                <h3 className="text-2xl font-bold mb-4">Photovista Portfolio</h3>
+              <a 
+                href="https://github.com/iNezerr/ats-resume-scanner" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-white dark:bg-gray-900 rounded-lg p-8 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 cursor-pointer group"
+              >
+                <h3 className="text-2xl font-bold mb-4 group-hover:text-blue-600 transition-colors">ATS Resume Scanner</h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  A dynamic photography platform built with Flask and AWS, where visual storytelling meets technical excellence. More than just images, it's about capturing moments that matter.
+                  An intelligent system that scans, scores, and analyzes resumes. Built using Python (Flask), spaCy for parsing, and a scoring engine that mimics how real ATS filters candidates. It also gives feedback to help users improve their resumes and get noticed.
                 </p>
                 <p className="text-blue-600 font-semibold">Why It Matters</p>
                 <p className="text-gray-600 dark:text-gray-300">
-                  This project blends my technical skills with my love for photography—a reminder that our diverse passions make us better creators.
+                  Too many capable people get ignored because their resumes don't pass automated filters. This tool helps job seekers stand a real chance.
                 </p>
-              </div>
+                <div className="mt-4 text-blue-600 font-medium group-hover:underline">
+                  View Code →
+                </div>
+              </a>
               
-              <div className="bg-white dark:bg-gray-900 rounded-lg p-8 shadow-lg">
-                <h3 className="text-2xl font-bold mb-4">TeamSync Collaboration Tool</h3>
+              <a 
+                href="https://mycodedge.africa" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-white dark:bg-gray-900 rounded-lg p-8 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 cursor-pointer group"
+              >
+                <h3 className="text-2xl font-bold mb-4 group-hover:text-blue-600 transition-colors">myCodeEdge</h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  An open-source tool that streamlines remote collaboration through Python microservices and Docker containers. It addresses the human challenges of distributed teams.
+                  A mentorship and learning platform for aspiring tech professionals, especially those with IT degrees but no clear career path. Offers structured coaching, hands-on projects, and personal growth support. Built with modern web tools and community-first thinking.
                 </p>
                 <p className="text-blue-600 font-semibold">Why It Matters</p>
                 <p className="text-gray-600 dark:text-gray-300">
-                  I believe technology should bring people together. This project helps teams feel connected despite physical distance.
+                  There are so many smart, unemployed graduates out there. This project exists to show them they're not alone and to help them find their edge.
                 </p>
-              </div>
+                <div className="mt-4 text-blue-600 font-medium group-hover:underline">
+                  Visit Project →
+                </div>
+              </a>
             </div>
           </div>
         </div>

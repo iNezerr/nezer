@@ -4,7 +4,6 @@ html {
 }
 
 body {
-  @apply bg-black text-white;
   font-family: 'Inter', sans-serif;
 }
 
@@ -14,11 +13,13 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-gray-900;
+  background: var(--color-purple-500);
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gradient-to-b from-blue-500 to-purple-600 rounded-full;
+  background: rgb(212, 212, 212);
+  border-radius: 10px;
 }
 
 /* Animations */
